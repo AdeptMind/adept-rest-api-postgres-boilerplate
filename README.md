@@ -21,12 +21,14 @@ The technology stack is:
 ## Structure
 
 ```
++-- migrations: See Knex docs
 +-- src
   +-- app.js: Express initialization
   +-- config.js: Loading and defining env variables
-  +-- dbconfig.js: Knex initialization, included in app.js
   +-- api
+    +-- base.model.js: Every subdirectory's model.js file should import this as BaseModel and extend it
     +-- index.js
+    +-- responses.js: Call these when returning (success, error, redirect)
     +-- {REST resource dir}
       +-- controller.js
       +-- index.js
