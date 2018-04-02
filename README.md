@@ -2,10 +2,12 @@
 
 ## Overview
 
-This repo is a boilerplate for setting up a new NodeJS based service in 
+This repo is a boilerplate for setting up a new NodeJS based service in the AdeptMind namespace.
+
 The technology stack is:
 - NodeJS (& NPM)
 - PostgreSQL
+- [ExpressJS](https://expressjs.com/en/guide/routing.html)
 - [Knex.js](http://knexjs.org/)
 - [Objection.js](http://vincit.github.io/objection.js/)
   - [See here for more info](https://dev.to/aspittel/objection--knex--painless-postgresql-in-your-node-app--6n6)
