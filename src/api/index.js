@@ -1,12 +1,13 @@
 const express = require('express');
-const router = express.Router();
 
-const posts = require('./posts');
-const users = require('./users');
+const PostsRoute = require('./posts');
+const UsersRoute = require('./users');
+
+const router = express.Router();
 
 router.get('/ping', (req, res) => res.send('pong'));
 
-router.use('/posts', posts);
-router.use('/users', users);
+router.use('/posts', PostsRoute);
+router.use('/users', UsersRoute);
 
 module.exports = router;

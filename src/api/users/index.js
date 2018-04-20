@@ -1,15 +1,15 @@
-const express = require('express');
-const router = express.Router();
+const Router = require('express-promise-router');
 
-const users = require('./controller');
+const Controller = require('./controller');
+
+const router = Router();
 
 router
-  .get('/', users.index)
-  .get('/new', users.new)
-  .post('/', users.create)
-  .get('/:id', users.show)
-  .get('/:id/edit', users.edit)
-  .put('/:id', users.update)
-  .delete('/:id', users.destroy);
+  .get('/', Controller.index)
+  .post('/', Controller.create)
+  .get('/:id', Controller.show)
+  .get('/:id/edit', Controller.edit)
+  .put('/:id', Controller.update)
+  .delete('/:id', Controller.destroy);
 
 module.exports = router;

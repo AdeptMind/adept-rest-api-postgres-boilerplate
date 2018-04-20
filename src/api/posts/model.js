@@ -7,7 +7,7 @@ class Post extends BaseModel {
   static get relationMappings() {
     return {
       user: {
-        relation: Model.BelongsToOneRelation,
+        relation: BaseModel.BelongsToOneRelation,
         // We use __dirname to avoid require loops
         modelClass: __dirname + '/../users/model',
         join: {

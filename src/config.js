@@ -5,23 +5,23 @@ dotenv.config({ allowEmptyValues: true });
 
 const config = {
   all: {
-    env: process.env.NODE_ENV || 'development',
-    root: path.join(__dirname, '..'),
-    port: process.env.PORT || 9000,
-    ip: process.env.IP || '0.0.0.0',
-    apiRoot: process.env.API_ROOT || '',
+    API_ROOT: process.env.API_ROOT || '',
+    IP: process.env.IP || '0.0.0.0',
+    NODE_ENV: process.env.NODE_ENV || 'development',
+    PORT: process.env.PORT || 9000,
+    ROOT: path.join(__dirname, '..'),
   },
   development: {
-    dbConnection: {
+    DB_CONNECTION: {
       host: '127.0.0.1',
       user: 'adept',
       password: 'Adept123',
-      database: 'adeptmind',
+      database: process.env.DATABASE_NAME,
     },
   },
   production: {
-    dbConnection: process.env.DATABASE_URL,
+    DB_CONNECTION: process.env.DATABASE_URL,
   },
 };
 
-module.exports = Object.assign(config.all, config[config.all.env]);
+module.exports = Object.assign(config.all, config[config.all.NODE_ENV]);

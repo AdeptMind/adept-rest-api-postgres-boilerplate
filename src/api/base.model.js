@@ -1,6 +1,7 @@
 const Knex = require('knex');
-const connection = require('../../knexfile');
 const { Model } = require('objection');
+
+const connection = require('../../knexfile');
 
 const knexConnection = Knex(connection);
 Model.knex(knexConnection);

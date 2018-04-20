@@ -1,57 +1,46 @@
 const User = require('./model');
 const { success, redirect } = require('../responses');
 
-exports.index = function(req, res, next) {
-  User.query()
+const index = async (req, res) => {
+  const data = await User.query()
     .orderBy('age', 'desc')
-    .eager('posts')
-    .then(function(data) {
-      success(res, { users: data });
-    }, next);
+    .eager('posts');
+  success(res, { users: data });
 };
 
-exports.show = function(req, res, next) {
-  User.query()
+const show = async (req, res) => {
+  const data = await User.query()
     .findById(req.params.id)
-    .eager('posts')
-    .then(function(data) {
-      success(res, data);
-    }, next);
+    .eager('posts');
+  success(res, data);
 };
 
-exports.new = function(req, res, next) {
-  success(res);
+const create = async (req, res) => {
+  await User.query().insert(req.body);
+  redirect(res, 'users');
 };
 
-exports.create = function(req, res, next) {
-  User.query()
-    .insert(req.body)
-    .then(function() {
-      redirect(res, 'users');
-    }, next);
+const edit = async (req, res) => {
+  const user = await User.query().findById(req.params.id);
+  success(res, user);
 };
 
-exports.edit = function(req, res, next) {
-  User.query()
-    .findById(req.params.id)
-    .then(function(user) {
-      success(res, user);
-    }, next);
-};
-
-exports.update = function(req, res, next) {
+const update = async (req, res) => {
   const id = req.params.id;
-  User.query()
-    .updateAndFetchById(id, req.body)
-    .then(function(user) {
-      redirect(res, `/users/${id}`);
-    }, next);
+  await User.query().updateAndFetchById(id, req.body);
+  redirect(res, `/users/${id}`);
 };
 
-exports.destroy = function(req, res, next) {
-  User.query()
-    .deleteById(req.params.id)
-    .then(function() {
-      redirect(res, '/users');
-    }, next);
+const destroy = async (req, res) => {
+  await User.query().deleteById(req.params.id);
+  redirect(res, '/users');
+};
+
+module.exports = {
+  create,
+  destroy,
+  edit,
+  index,
+  show,
+  update,
 };
