@@ -11,7 +11,7 @@ const config = require('./src/config');
 
 module.exports = {
   client: "pg",
-  connection: config.dbConnection,
+  connection: config.DB_CONNECTION,
   migrations: {
     directory: __dirname + '/migrations'
   },

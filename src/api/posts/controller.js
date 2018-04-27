@@ -2,70 +2,56 @@ const Post = require('./model');
 const User = require('../users/model');
 const { success, redirect } = require('../responses');
 
-exports.index = function(req, res, next) {
-  Post.query()
-    .eager('user')
-    .then(function(posts) {
-      success(res, posts);
-    }, next);
+const index = async (req, res) => {
+  const posts = await Post.query().eager('user');
+  success(res, posts);
 };
 
-exports.show = function(req, res, next) {
-  Post.query()
+const show = async (req, res) => {
+  const post = await Post.query()
     .findById(req.params.id)
-    .eager('user')
-    .then(function(post) {
-      success(res, post);
-    }, next);
+    .eager('user');
+  success(res, post);
 };
 
-exports.create = function(req, res, next) {
-  Post.query()
+const create = async (req, res) => {
+  const post = await Post.query()
     .insertAndFetch(req.body)
-    .eager('user')
-    .then(function(post) {
-      success(res, post);
-    }, next);
+    .eager('user');
+  success(res, post);
 };
 
-exports.update = function(req, res, next) {
-  Post.query()
+const update = async (req, res) => {
+  const post = await Post.query()
     .updateAndFetchById(req.params.id, req.body)
-    .eager('user')
-    .then(function(post) {
-      success(res, post);
-    }, next);
+    .eager('user');
+  success(res, post);
 };
 
-exports.destroy = function(req, res, next) {
-  Post.query()
-    .findById(req.params.id)
-    .then(function(post) {
-      Post.query()
-        .deleteById(req.params.id)
-        .then(function() {
-          success(res, post);
-        });
-    }, next);
+const destroy = async (req, res) => {
+  const post = await Post.query().findById(req.params.id);
+  await Post.query().deleteById(req.params.id);
+  success(res, post);
 };
 
-// Non API user nested routes for associations
-exports.newUser = function(req, res, next) {
-  User.query()
-    .findById(req.params.id)
-    .then(function(user) {
-      success(res, user);
-    }, next);
+const newUser = async (req, res) => {
+  const user = await User.query().findById(req.params.id);
+  success(res, user);
 };
 
-exports.createUser = function(req, res, next) {
+const createUser = async (req, res) => {
   const user_id = req.params.id;
-  User.query()
-    .findById(user_id)
-    .then(function(user) {
-      return user.$relatedQuery('posts').insert(req.body);
-    })
-    .then(function(post) {
-      redirect(res, `/users/${user_id}`);
-    }, next);
+  const user = await User.query().findById(user_id);
+  await user.$relatedQuery('posts').insert(req.body);
+  redirect(res, `/users/${user_id}`);
+};
+
+module.exports = {
+  create,
+  createUser,
+  destroy,
+  index,
+  newUser,
+  show,
+  update,
 };
