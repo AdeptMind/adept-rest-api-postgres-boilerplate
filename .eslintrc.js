@@ -24,9 +24,28 @@ module.exports = {
     'promise',
   ],
   'rules': {
+    'import/order': [2, {
+      'groups': [['builtin', 'external'], ['internal', 'parent', 'sibling', 'index']],
+      'newlines-between': 'always',
+    }],
+    'import/newline-after-import': [2],
     'linebreak-style': [
       'error',
       'unix'
+    ],
+    'no-console': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        'arrowParens': 'always',
+        'bracketSpacing': true,
+        'jsxBracketSameLine': false,
+        'parser': 'babylon',
+        'printWidth': 80,
+        'semi': true,
+        'singleQuote': true,
+        'trailingComma': 'all',
+      },
     ],
     'quotes': [
       'error',
@@ -35,24 +54,6 @@ module.exports = {
     'semi': [
       'error',
       'always'
-    ],
-    'import/order': [2, {
-      'groups': [['builtin', 'external'], ['internal', 'parent', 'sibling', 'index']],
-      'newlines-between': 'always',
-    }],
-    'import/newline-after-import': [2],
-    'prettier/prettier': [
-      'error',
-      {
-        'printWidth': 80,
-        'singleQuote': true,
-        'trailingComma': 'all',
-        'bracketSpacing': true,
-        'jsxBracketSameLine': false,
-        'parser': 'babylon',
-        'semi': true,
-        'arrowParens': 'always',
-      },
     ],
   }
 };
