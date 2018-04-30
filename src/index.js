@@ -46,7 +46,6 @@ function onError(error) {
 function onListening() {
   const addr = server.address();
   const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
-  // eslint-disable-next-line no-console
   console.debug('Listening on ' + bind);
 }
 

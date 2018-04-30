@@ -1,5 +1,4 @@
 const error = function(res, message) {
-  // eslint-disable-next-line no-console
   console.error(message);
   res.status(500).send(message);
 };
