@@ -1,12 +1,15 @@
 const http = require('http');
 
+const ApiRoute = require('./api');
 const app = require('./app');
-const config = require('./config');
+const { API_ROOT, PORT } = require('./config');
 
-const port = normalizePort(config.PORT);
-app.set('port', port);
+const App = app(API_ROOT, ApiRoute);
 
-const server = http.createServer(app);
+const port = normalizePort(PORT);
+App.set('port', port);
+
+const server = http.createServer(App);
 
 server.listen(port);
 server.on('error', onError);

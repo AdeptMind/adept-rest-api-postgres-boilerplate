@@ -1,22 +1,23 @@
-const error = function(res, message) {
-  console.error(message);
-  res.status(500).send(message);
+const { getFailedPayload, getSuccessPayload } = require('../lib/adept-request');
+
+const error = (res, message, status = 500) => {
+  res.status(status).json(getFailedPayload(message));
 };
 
-const forbidden = function(res, message) {
-  res.status(403).send(message);
+const forbidden = (res, message) => {
+  error(res, message, 403);
 };
 
-const notFound = function(res, message) {
-  res.status(404).send(message);
+const notFound = (res, message) => {
+  error(res, message, 404);
 };
 
-const redirect = function(res, url) {
+const redirect = (res, url) => {
   res.redirect(url);
 };
 
-const success = function(res, data) {
-  res.status(200).json(data);
+const success = (res, data) => {
+  res.status(200).json(getSuccessPayload(data));
 };
 
 module.exports = {
