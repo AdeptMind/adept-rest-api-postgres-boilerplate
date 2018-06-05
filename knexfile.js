@@ -10,12 +10,13 @@ const config = require('./src/config');
 // To check if database was created run psql and \l to see full list of databases
 
 module.exports = {
-  client: "pg",
+  client: config.DB_CLIENT,
   connection: config.DB_CONNECTION,
   migrations: {
-    directory: __dirname + '/migrations'
+    directory: __dirname + '/src/db/migrations',
   },
   seeds: {
-    directory: __dirname + '/seeds'
+    directory: __dirname + '/src/db/seeds',
   },
+  useNullAsDefault: config.DB_CLIENT === 'sqlite3',
 };
