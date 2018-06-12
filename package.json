@@ -17,7 +17,7 @@
     "testEnvironment": "node",
     "setupTestFrameworkScriptFile": "<rootDir>/src/api/test-setup.js"
   },
-  "pre-commit": [
+  "pre-push": [
     "format",
     "lint",
     "test"
@@ -51,7 +51,7 @@
     "eslint-plugin-standard": "^3.1.0",
     "jest": "^23.1.0",
     "mock-knex": "^0.4.0",
-    "pre-commit": "^1.2.2",
+    "pre-push": "^0.1.1",
     "prettier": "^1.13.4",
     "sqlite3": "^4.0.0",
     "supertest": "^3.1.0"
