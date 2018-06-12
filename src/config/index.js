@@ -15,6 +15,7 @@ const config = {
       database: process.env.DATABASE_NAME,
     },
     IP: process.env.IP || '0.0.0.0',
+    LOG_LEVEL: process.env.LOG_LEVEL || 'debug',
     NODE_ENV: process.env.NODE_ENV || 'development',
     PORT: process.env.PORT || 9000,
     ROOT: path.join(__dirname, '..'),
