@@ -3,6 +3,7 @@ const http = require('http');
 const ApiRoute = require('./api');
 const app = require('./app');
 const { API_ROOT, PORT } = require('./config');
+const logger = require('./lib/logger');
 
 const App = app(API_ROOT, ApiRoute);
 
@@ -49,7 +50,7 @@ function onError(error) {
 function onListening() {
   const addr = server.address();
   const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
-  console.debug('Listening on ' + bind);
+  logger.info('Listening on ' + bind);
 }
 
 module.exports = server;

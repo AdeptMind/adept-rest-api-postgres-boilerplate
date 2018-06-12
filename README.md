@@ -71,6 +71,8 @@ Add new endpoints into `/src/api`, copy/modify existing examples
 
 `PORT`: The platform manager service is bound to this port.
 
+`LOG_LEVEL`: can be set to any of the following `debug`, `info`, `warn`, `error`; will filter out any console prints that is less severe than the level specified. The default is `debug` for development purposes. It is recommended to use `warn` on production deployments.
+
 ## Code conventions
 
 We are establishing certain code conventions through ESLint and Prettier, and have hooks in place to run these on every commit. It is preferable to keep code style consistent throughout.
@@ -92,9 +94,34 @@ We are establishing certain code conventions through ESLint and Prettier, and ha
 - It is preferred (but not enforced) that the last block of the JS file should be an assignment to `module.exports` or `exports`, and no assignments to this should occur before that point
   - If using `module.exports = { bar, baz, foo ... }` style, sort export variables by the same alphabetical order as the import blocks
 
+## Logging
+
+There is a convenience module `lib/logger.js` that is built upon the `winston` library and is meant to be a starting point for users to add additional transports as well as filter out noise using the `LOG_LEVEL` configuration in `.env`
+
+It is possible to just import the module using `const logger = require('./lib/logger');` and begin invoking `logger.log`.
+
+Available methods follow the available log levels and in order of least to most severe:
+
+```
+- logger.debug(...)
+- logger.info(...)
+- logger.warn(...)
+- logger.error(...)
+```
+
+### Removing logging
+
+If you want to replace the logging library, you will have to remove the references to it in the following files:
+
+```
+- $ROOT/src/index.js
+- $ROOT/src/app.js
+```
+
 ## Before you start
 
 - Remove all of the sample files in `/src/db/migrations` and `/src/api/{users,posts}`. They are only examples. Replace with your own implementations.
 - Remove all `.test.js` files as well.
 - Create a `.env` file in the root directory by copying from `.env.example` and modifying the values to suit the current project.
 - Set up Postgres on the host machine and create a separate database for your project. The database name should be related to the repo name, and should be `underscore_delimited` (all Postgres naming uses underscores by convention). Put the database name in the `.env` file under `DATABASE_NAME`.
+

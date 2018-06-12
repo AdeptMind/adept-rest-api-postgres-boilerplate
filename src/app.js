@@ -3,11 +3,12 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const express = require('express');
-const logger = require('morgan');
 const methodOverride = require('method-override');
+const morgan = require('morgan');
 const path = require('path');
 const { errorHandler: bodyErrorHandler } = require('bodymen');
 
+const winston = require('./lib/logger');
 const { error } = require('./api/responses');
 
 module.exports = (apiRoot, routes) => {
@@ -15,7 +16,7 @@ module.exports = (apiRoot, routes) => {
 
   app.use(cors());
   app.use(compression());
-  app.use(logger('dev'));
+  app.use(morgan('combined', { stream: winston.stream }));
   app.use(express.static(path.join(__dirname, 'public')));
 
   app.use(bodyParser.json());
