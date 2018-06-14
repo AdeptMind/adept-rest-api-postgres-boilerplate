@@ -11,7 +11,8 @@
     "watch": "nodemon src",
     "test": "jest",
     "lint": "eslint src",
-    "format": "prettier --write '**/*.{js,scss}'"
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write '**/*.js'"
   },
   "jest": {
     "testEnvironment": "node",
