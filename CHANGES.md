@@ -1,3 +1,9 @@
+2018-06-15, Version 1.1.1
+=========================
+
+ * Package: add convenient lint:fix and remove scss (Phong Thieu)
+
+
 2018-06-13, Version 1.1.0
 =========================
 
