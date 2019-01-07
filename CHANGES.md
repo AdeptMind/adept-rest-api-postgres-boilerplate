@@ -1,3 +1,9 @@
+2019-01-07, Version 1.3.0
+=========================
+
+ * Package: update to latest versions of all dependencies (Phong Thieu)
+
+
 2019-01-07, Version 1.2.0
 =========================
 
