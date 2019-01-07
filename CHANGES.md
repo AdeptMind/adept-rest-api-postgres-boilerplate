@@ -1,3 +1,9 @@
+2019-01-07, Version 1.2.0
+=========================
+
+ * App: remove anything related to `adept`, cleanup for opensource (Phong Thieu)
+
+
 2018-06-15, Version 1.1.1
 =========================
 
