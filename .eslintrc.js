@@ -15,9 +15,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
-    ecmaFeatures: {
-      experimentalObjectRestSpread: true,
-    },
+    ecmaFeatures: {},
   },
   plugins: ['import', 'node', 'prettier', 'promise'],
   rules: {
