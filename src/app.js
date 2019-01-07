@@ -33,6 +33,7 @@ module.exports = (apiRoot, routes) => {
     }),
   );
 
+  app.get('/favicon.ico', (req, res) => res.sendStatus(204));
   app.use(apiRoot, routes);
 
   app.use(bodyErrorHandler());

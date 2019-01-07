@@ -1,6 +1,6 @@
 const rp = require('request-promise');
 
-class AdeptRequestError extends Error {
+class RequestError extends Error {
   constructor(message, payload) {
     super(message);
     this.payload = payload;
@@ -18,20 +18,20 @@ const getFailedPayload = (message) => {
 const request = async (options) => {
   const payload = await rp(options);
   if (typeof payload === 'object' && payload.success === false) {
-    throw new AdeptRequestError(payload.message, payload);
+    throw new RequestError(payload.message, payload);
   }
   if (
     typeof payload !== 'object' ||
     payload.success !== true ||
     !payload.data
   ) {
-    throw new AdeptRequestError('Got malformed response payload', payload);
+    throw new RequestError('Got malformed response payload', payload);
   }
   return payload.data;
 };
 
 module.exports = {
-  AdeptRequestError,
+  RequestError,
   getFailedPayload,
   getSuccessPayload,
   request,

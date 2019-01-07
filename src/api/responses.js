@@ -1,4 +1,4 @@
-const { getFailedPayload, getSuccessPayload } = require('../lib/adept-request');
+const { getFailedPayload, getSuccessPayload } = require('../lib/request');
 
 const error = (res, message, status = 500) => {
   res.status(status).json(getFailedPayload(message));

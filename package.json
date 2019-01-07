@@ -19,7 +19,6 @@
     "setupTestFrameworkScriptFile": "<rootDir>/src/api/test-setup.js"
   },
   "pre-push": [
-    "format",
     "lint",
     "test"
   ],

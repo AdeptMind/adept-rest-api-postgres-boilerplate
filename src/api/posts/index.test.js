@@ -63,7 +63,7 @@ describe('POST /posts', () => {
   let user;
 
   beforeEach(async () => {
-    user = await User.query().insertAndFetch({ email: 'test@adeptmind.ai' });
+    user = await User.query().insertAndFetch({ email: 'test@example.com' });
   });
 
   it('should get the correct data', async () => {

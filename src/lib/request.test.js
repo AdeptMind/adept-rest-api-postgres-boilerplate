@@ -2,17 +2,13 @@ jest.mock('request-promise');
 
 const rp = require('request-promise');
 
-const {
-  getFailedPayload,
-  getSuccessPayload,
-  request,
-} = require('./adept-request');
+const { getFailedPayload, getSuccessPayload, request } = require('./request');
 
 rp.mockImplementation(async ({ url }) => {
   if (!url) {
     return {};
   }
-  if (!url.endsWith('adeptmind.ai')) {
+  if (!url.endsWith('example.com')) {
     return getFailedPayload('failed');
   }
   return getSuccessPayload('success');
@@ -21,7 +17,7 @@ rp.mockImplementation(async ({ url }) => {
 describe('request', () => {
   it('should return data if successful', async () => {
     const data = await request({
-      url: 'platform-manager.adeptmind.ai',
+      url: 'example.com',
     });
     expect(data).toEqual('success');
   });
