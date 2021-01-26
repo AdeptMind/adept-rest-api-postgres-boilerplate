@@ -1,10 +1,7 @@
-exports.up = function(knex) {
-  return knex.schema.createTable('users', function(table) {
+exports.up = function (knex) {
+  return knex.schema.createTable('users', function (table) {
     table.increments();
-    table
-      .string('email')
-      .notNullable()
-      .unique();
+    table.string('email').notNullable().unique();
     table.string('name');
     table.integer('age');
     table.boolean('is_admin').defaultTo(false);
@@ -12,6 +9,6 @@ exports.up = function(knex) {
   });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema.dropTable('users');
 };

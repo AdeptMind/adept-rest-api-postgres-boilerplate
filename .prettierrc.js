@@ -27,7 +27,7 @@ module.exports = {
   // If CSS or TypeScript is detected in Sublime Text, the parser option
   // will always be internally overridden and set to "postcss" or
   // "typescript" respectively.
-  parser: 'babylon',
+  parser: 'babel',
 
   // Whether to add a semicolon at the end of every line (semi: true), or
   // only at the beginning of lines that may introduce

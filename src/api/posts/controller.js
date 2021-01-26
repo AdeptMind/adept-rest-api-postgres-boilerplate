@@ -8,16 +8,12 @@ const index = async (req, res) => {
 };
 
 const show = async (req, res) => {
-  const post = await Post.query()
-    .findById(req.params.id)
-    .eager('user');
+  const post = await Post.query().findById(req.params.id).eager('user');
   success(res, post);
 };
 
 const create = async (req, res) => {
-  const post = await Post.query()
-    .insertAndFetch(req.body)
-    .eager('user');
+  const post = await Post.query().insertAndFetch(req.body).eager('user');
   success(res, post);
 };
 

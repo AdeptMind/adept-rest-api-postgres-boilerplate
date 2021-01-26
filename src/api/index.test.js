@@ -6,7 +6,5 @@ const app = require('../app');
 const App = app('/', Route);
 
 test('GET /ping', async () => {
-  await request(App)
-    .get('/ping')
-    .expect(200, { success: true, data: 'pong' });
+  await request(App).get('/ping').expect(200, { success: true, data: 'pong' });
 });

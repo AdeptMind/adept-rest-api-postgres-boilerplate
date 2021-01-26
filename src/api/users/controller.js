@@ -2,16 +2,12 @@ const User = require('./model');
 const { success, redirect } = require('../responses');
 
 const index = async (req, res) => {
-  const data = await User.query()
-    .orderBy('age', 'desc')
-    .eager('posts');
+  const data = await User.query().orderBy('age', 'desc').eager('posts');
   success(res, { users: data });
 };
 
 const show = async (req, res) => {
-  const data = await User.query()
-    .findById(req.params.id)
-    .eager('posts');
+  const data = await User.query().findById(req.params.id).eager('posts');
   success(res, data);
 };
 
